@@ -8,5 +8,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bellhop-iframe": "git+https://github.com/SpringRoll/Bellhop.git#1.2.0"
+  }
 }
