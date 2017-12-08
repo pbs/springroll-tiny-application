@@ -43,6 +43,13 @@
 
     // attach this instance globally, since there shouldn't only ever be one
     window.app = this;
+
+    document.addEventListener(
+      "visibilitychange",
+      function(e) {
+        this.container.send("focus", !document.hidden);
+      }.bind(this)
+    );
   };
 
   if (typeof module === "object") {
