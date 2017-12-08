@@ -1,5 +1,9 @@
 (function() {
   var TinyApplication = function(options) {
+    if (window.app !== undefined) {
+      throw new Error("Another app instance is already instantiated");
+    }
+
     options = options || {};
 
     var isMissing = function(hookname) {
@@ -24,6 +28,9 @@
     this.container = new Bellhop();
     this.container.connect();
     this.container.on(options);
+
+    // attach this instance globally, since there shouldn't only ever be one
+    window.app = this;
   };
 
   if (typeof module === "object") {
