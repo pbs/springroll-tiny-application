@@ -599,9 +599,11 @@
     }
 
     options = options || {};
+    options.hooks = options.hooks || {};
+    options.features = options.features || {};
 
     var isMissing = function(hookName) {
-      return !(options[hookName] instanceof Function);
+      return !(options.hooks[hookName] instanceof Function);
     };
 
     // make sure all missing required hooks are there
@@ -630,10 +632,18 @@
 
     this.container = new Bellhop();
     this.container.connect();
-    this.container.on(options);
+    this.container.on(options.hooks);
+    this.container.send('features', options.features);
 
     // attach this instance globally, since there shouldn't only ever be one
     window.app = this;
+
+    document.addEventListener(
+      "visibilitychange",
+      function(e) {
+        this.container.send("focus", !document.hidden);
+      }.bind(this)
+    );
   };
 
   if (typeof module === "object") {
