@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/TinyApplication.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "prettier --write src/*.js",
     "start": "cat node_modules/bellhop-iframe/dist/bellhop.js src/TinyApplication.js > dist/springroll-tiny-application"
   },
   "keywords": [],
@@ -12,5 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "bellhop-iframe": "git+https://github.com/SpringRoll/Bellhop.git#1.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.9.1"
   }
 }
