@@ -1,7 +1,5 @@
 (function() {
-  window.springroll = window.springroll || {};
-
-  window.springroll.TinyApplication = function(options) {
+  var TinyApplication = function(options) {
     options = options || {};
 
     var isMissing = function(hookname) {
@@ -25,4 +23,13 @@
     this.container.connect();
     this.container.on(options);
   };
+
+  if(typeof module === 'object') {
+    module.exports = TinyApplication;
+  }
+
+  if(typeof window  === 'object') {
+    window.springroll = window.springroll || {};
+    window.springroll.TinyApplication = TinyApplication;
+  }
 })();
