@@ -11,7 +11,16 @@
     };
 
     // make sure all missing required hooks are there
-    var missingRequiredHooks = [].filter(isMissing);
+    var missingRequiredHooks = [
+      "soundMuted",
+      "captionsMuted",
+      "musicMuted",
+      "voMuted",
+      "sfxMuted",
+      "captionsStyles",
+      "pause",
+      "close"
+    ].filter(isMissing);
     if (missingRequiredHooks.length > 0) {
       throw new Error(
         "Missing some required hooks: " + missingRequiredHooks.join(", ")
