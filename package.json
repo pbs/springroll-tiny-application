@@ -1,8 +1,8 @@
 {
-  "name": "springroll-lite",
+  "name": "springroll-tiny-application",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/TinyApplication.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cat node_modules/bellhop-iframe/dist/bellhop.js src/TinyApplication.js > dist/springroll-tiny-application"
