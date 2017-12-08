@@ -6,7 +6,7 @@
 
     options = options || {};
 
-    var isMissing = function(hookname) {
+    var isMissing = function(hookName) {
       return !(options[hookName] instanceof Function);
     };
 
