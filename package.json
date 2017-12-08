@@ -5,7 +5,7 @@
   "main": "src/TinyApplication.js",
   "scripts": {
     "test": "prettier --write src/*.js",
-    "start": "cat node_modules/bellhop-iframe/dist/bellhop.js src/TinyApplication.js > dist/springroll-tiny-application"
+    "start": "cat node_modules/bellhop-iframe/dist/bellhop.js src/TinyApplication.js > dist/springroll-tiny-application.js"
   },
   "keywords": [],
   "author": "",
