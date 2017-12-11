@@ -634,16 +634,21 @@
     this.container.connect();
     this.container.on(options.hooks);
     this.container.send('features', options.features);
+    this.container.send('keepFocus', false);
+    this.container.send('loaded');
 
     // attach this instance globally, since there shouldn't only ever be one
     window.app = this;
 
-    document.addEventListener(
-      "visibilitychange",
-      function(e) {
-        this.container.send("focus", !document.hidden);
-      }.bind(this)
-    );
+    window.addEventListener('focus', function() {
+      console.log('focus');
+      this.container.send('focus', true);
+    }.bind(this));
+
+    window.addEventListener('blur', function() {
+      console.log('blur');
+      this.container.send('focus', false);
+    }.bind(this));
   };
 
   if (typeof module === "object") {
