@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="./dist/springroll-tiny-application.js"></script>
+<style>
+.yes,.no {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 1em;
+    padding: 1em;
+    color: white;
+    font-weight: bold;
+    font-family: Arial;
+}
+
+.yes {
+    background-color: green;
+}
+
+.no {
+    background-color: red;
+}
+</style>
+    </head>
+    <body>
+        <div id="mute" class="no">Muted</div>
+        <div id="captions" class="no">Captions Muted</div>
+        <div id="paused" class="no">Paused</div>
+        <script>
+
+/**
+ * Toggles a class on a selector. If state===true, this will make the class "yes", otherwise, it'll make the class "no"
+ */
+function toggle(selector, state) {
+    document.querySelector(selector).className = state ? 'yes' : 'no';
+};
+
+var noop = () => {}
+
+window.app = new springroll.TinyApplication({
+    hooks: {
+        // on those events, just toggle green or red on those container elements
+        soundMuted: event => toggle('#mute', event.data),
+        captionsMuted: event => toggle('#captions', event.data),
+        pause: event => toggle('#paused', event.data),
+
+        // Our features block dictates we don't support this, so we'll never receive these events
+        musicMuted: noop,
+        voMuted: noop,
+        sfxMuted: noop,
+        captionsStyles: noop,
+        close: noop
+    },
+    features: {
+        // Telling the container that we do have sound and captions, so that the container keeps those buttons visible and enabled.
+        sound: true,
+        captions: true
+    }
+});
+        </script>
+    </body>
+</html>

@@ -593,6 +593,15 @@
 	window.Bellhop = Bellhop;
 
 }(window));(function() {
+  var Bellhop = window.Bellhop;
+  if(Bellhop === undefined && require instanceof Function) {
+    Bellhop = require('bellhop-iframe');
+  }
+
+  if(Bellhop === undefined) {
+    throw new Error("Could not import bellhop");
+  }
+
   var TinyApplication = function(options) {
     if (window.app !== undefined) {
       throw new Error("Another app instance is already instantiated");
@@ -643,7 +652,6 @@
     window.addEventListener(
       "focus",
       function() {
-        console.log("focus");
         this.container.send("focus", true);
       }.bind(this)
     );
@@ -651,7 +659,6 @@
     window.addEventListener(
       "blur",
       function() {
-        console.log("blur");
         this.container.send("focus", false);
       }.bind(this)
     );
