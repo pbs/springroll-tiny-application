@@ -58,7 +58,6 @@
     window.addEventListener(
       "focus",
       function() {
-        console.log("focus");
         this.container.send("focus", true);
       }.bind(this)
     );
@@ -66,7 +65,6 @@
     window.addEventListener(
       "blur",
       function() {
-        console.log("blur");
         this.container.send("focus", false);
       }.bind(this)
     );
