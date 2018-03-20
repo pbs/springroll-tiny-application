@@ -594,11 +594,11 @@
 
 }(window));(function() {
   var Bellhop = window.Bellhop;
-  if(Bellhop === undefined && require instanceof Function) {
-    Bellhop = require('bellhop-iframe');
+  if (Bellhop === undefined && require instanceof Function) {
+    Bellhop = require("bellhop-iframe");
   }
 
-  if(Bellhop === undefined) {
+  if (Bellhop === undefined) {
     throw new Error("Could not import bellhop");
   }
 
