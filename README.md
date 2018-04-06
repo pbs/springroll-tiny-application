@@ -46,7 +46,20 @@ These are, in short, the core set of events that the container can emit to the a
 After instantiating the application, you can then proceed to write the game however you want, but the expectation is that the hooks provide do something meaningful.
 
 ## Examples
-There is an example integration included with the project. A container set-up is in `index.html`, and a corresponding "game" can be found in `frame.html`.
+There is an example integration included with the project in the `example` folder. A container set-up is in
+`examples/index.html`, and a corresponding "game" can be found in `examples/frame.html`. To test it out, you'll need to
+start a web server from the project root:
+
+```
+# Using PHP
+php -S localhost:PORT
+
+# Using Python
+python -m SimpleHTTPServer PORT # Using python
+```
+
+In the example, the game adds handlers for three events: captions, audio mute, and play/pause. The buttons will toggle
+captions and mute, and pause is triggered on window focus.
 
 ## SpringRollConnect Integration Notes
 For your game to be SpringRollConnect compatible, you'll need to a take a couple more steps:
