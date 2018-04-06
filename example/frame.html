@@ -3,16 +3,18 @@
     <head>
         <script src="../dist/springroll-tiny-application.js"></script>
 <style>
-.yes,.no {
+p, .yes, .no {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
     text-align: center;
     margin-bottom: 1em;
     padding: 1em;
-    color: white;
     font-weight: bold;
     font-family: Arial;
+}
+.yes,.no {
+    color: white;
 }
 
 .yes {
@@ -20,12 +22,14 @@
 }
 
 .no {
-    display: none;
     background-color: #ff8b00;
 }
 </style>
     </head>
     <body>
+        <p>
+            Any mute, captions, or pause flags from the container will appear below
+        </p>
         <div id="mute" class="no">Muted</div>
         <div id="captions" class="no">Captions Muted</div>
         <div id="paused" class="no">Paused</div>
@@ -34,8 +38,10 @@
 /**
  * Toggles a class on a selector. If state===true, this will make the class "yes", otherwise, it'll make the class "no"
  */
-function toggle(selector, state) {
-    document.querySelector(selector).className = state ? 'yes' : 'no';
+function toggle(selector, state, yesText, noText) {
+    var container = document.querySelector(selector);
+    container.className = state ? 'yes' : 'no';
+    container.innerText = state ? yesText : noText;
 };
 
 var noop = () => {}
@@ -43,9 +49,9 @@ var noop = () => {}
 window.app = new springroll.TinyApplication({
     hooks: {
         // on those events, just toggle green or red on those container elements
-        soundMuted: event => toggle('#mute', event.data),
-        captionsMuted: event => toggle('#captions', event.data),
-        pause: event => toggle('#paused', event.data),
+        soundMuted: event => toggle('#mute', event.data, 'Muted', 'Unmuted'),
+        captionsMuted: event => toggle('#captions', event.data, 'Captions Muted', 'Captions Showing'),
+        pause: event => toggle('#paused', event.data, 'Game Paused', 'Game Playing'),
 
         // Our features block dictates we don't support this, so we'll never receive these events
         musicMuted: noop,
