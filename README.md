@@ -45,6 +45,19 @@ All of the hooks listed are _required_ by `TinyApplication` to function properly
 These are, in short, the core set of events that the container can emit to the application.
 After instantiating the application, you can then proceed to write the game however you want, but the expectation is that the hooks provide do something meaningful.
 
+### Custom Plugins
+There is also a small plugin functionality as well, which can be seen on the example `frame.html` page which hosts a miniature app.
+To implement a custom plugin, integrators should create an instance of `springroll.ApplicationPlugin` and then implement a `setup` method:
+
+```javascript
+var customPlugin = new springroll.ApplicationPlugin();
+customPlugin.setup = function() {
+  // do something here
+};
+```
+
+Application plugins take an optional constructor parameter to specify priority. By default this value is 100. Higher value priority plugins will execute `setup` first.
+
 ## Examples
 There is an example integration included with the project in the `example` folder. A container set-up is in
 `examples/index.html`, and a corresponding "game" can be found in `examples/frame.html`. To test it out, you'll need to
