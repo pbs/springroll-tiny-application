@@ -70,12 +70,15 @@
     );
   };
 
+  var global = null;
   if (typeof module === "object") {
-    module.exports = TinyApplication;
+    global = module.exports;
+  } else if (typeof window === "object") {
+    window.springroll = window.springroll || {};
+    global = window.springroll;
+  } else {
+    throw new Error('SpringRoll TinyApplication only supported in a CommonJS or Browser environent');
   }
 
-  if (typeof window === "object") {
-    window.springroll = window.springroll || {};
-    window.springroll.TinyApplication = TinyApplication;
-  }
+  global.TinyApplication = TinyApplication;
 })();
