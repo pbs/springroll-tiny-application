@@ -103,6 +103,4 @@
   };
 
   global.ApplicationPlugin.prototype.setup = function() {};
-
-  global.ApplicationPlugin.prototype.teardown = function() {};
 })();
