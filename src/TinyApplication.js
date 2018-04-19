@@ -70,6 +70,8 @@
     );
   };
 
+  TinyApplication.plugins = [];
+
   var global = null;
   if (typeof module === "object") {
     global = module.exports;
@@ -77,8 +79,20 @@
     window.springroll = window.springroll || {};
     global = window.springroll;
   } else {
-    throw new Error('SpringRoll TinyApplication only supported in a CommonJS or Browser environent');
+    throw new Error(
+      "SpringRoll TinyApplication only supported in a CommonJS or Browser environent"
+    );
   }
 
   global.TinyApplication = TinyApplication;
+
+  global.ApplicationPlugin = function(priority) {
+    this.priority = priority || 100;
+
+    TinyApplication.plugins.push(this);
+  };
+
+  global.ApplicationPlugin.prototype.setup = function() {};
+
+  global.ApplicationPlugin.prototype.teardown = function() {};
 })();
