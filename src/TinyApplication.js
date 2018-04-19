@@ -13,6 +13,9 @@
       throw new Error("Another app instance is already instantiated");
     }
 
+    // attach this instance globally, since there shouldn't only ever be one
+    window.app = this;
+
     options = options || {};
     options.hooks = options.hooks || {};
     options.features = options.features || {};
@@ -50,10 +53,17 @@
     this.container.on(options.hooks);
     this.container.send("features", options.features);
     this.container.send("keepFocus", false);
-    this.container.send("loaded");
 
-    // attach this instance globally, since there shouldn't only ever be one
-    window.app = this;
+    // setup all plugins
+    TinyApplication.plugins.sort(function(a, b) {
+      return b.priority - a.priority;
+    });
+
+    TinyApplication.plugins.forEach(function(plugin) {
+      plugin.setup.call(window.app);
+    });
+
+    this.container.send("loaded");
 
     window.addEventListener(
       "focus",
