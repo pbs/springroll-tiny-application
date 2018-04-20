@@ -35,6 +35,11 @@ p, .yes, .no {
         <div id="paused" class="no">Paused</div>
         <script>
 
+var customPlugin = new springroll.ApplicationPlugin();
+customPlugin.setup = function() {
+    console.log('Set up for custom plugin');
+};
+
 /**
  * Toggles a class on a selector. If state===true, this will make the class "yes", otherwise, it'll make the class "no"
  */
