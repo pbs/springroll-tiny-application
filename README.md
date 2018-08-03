@@ -64,7 +64,7 @@ var app = new springroll.TinyApplication({
 });
 ```
 
-The `data` field will be null if no play options are provided.
+The `data` field will be null if no play options are provided. Also, the current value of play options can be checked at any time by inspecting the `playOptions` property on the application instance.
 
 ### Custom Plugins
 There is also a small plugin functionality as well, which can be seen on the example `frame.html` page which hosts a miniature app.
