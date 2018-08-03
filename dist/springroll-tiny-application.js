@@ -635,7 +635,7 @@
       );
     }
 
-    var missingWantedHooks = [].filter(isMissing);
+    var missingWantedHooks = ["playOptions"].filter(isMissing);
     if (missingWantedHooks.length > 0) {
       console.warn(
         "Maybe you should provide these hooks? : " + missingWanted.join(", ")
@@ -647,6 +647,28 @@
     this.container.on(options.hooks);
     this.container.send("features", options.features);
     this.container.send("keepFocus", false);
+
+    // pull play options
+    this.playOptions = {};
+
+    // attempt to load play options from the query string
+    var match = /playOptions=[^&$]*/.exec(window.location.search);
+    if (match !== null) {
+      var matchedToken = match[0];
+      var rawValue = decodeURIComponent(matchedToken.split("=")[1]);
+
+      try {
+        this.playOptions = JSON.parse(rawValue);
+      } catch (e) {
+        console.warn("Failed to parse play options from URL param:", rawValue);
+      }
+    }
+
+    this.container.fetch("playOptions", function(e) {
+      if (options.hooks.playOptions) {
+        options.hooks.playOptions(e);
+      }
+    });
 
     // setup all plugins
     TinyApplication.plugins.sort(function(a, b) {
