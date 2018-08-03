@@ -45,6 +45,27 @@ All of the hooks listed are _required_ by `TinyApplication` to function properly
 These are, in short, the core set of events that the container can emit to the application.
 After instantiating the application, you can then proceed to write the game however you want, but the expectation is that the hooks provide do something meaningful.
 
+### Optional Hooks
+There is also an optional hook for receiving [play options from the container](https://github.com/SpringRoll/SpringRollContainer#play-options).
+To receive play options, add another hook to the configuration:
+
+```javascript
+var app = new springroll.TinyApplication({
+  hooks: {
+    ...
+    playOptions: function(e) {
+      console.log('Play options are', e.data);
+    },
+    ...
+  },
+  features: {
+    ...
+  }
+});
+```
+
+The `data` field will be null if no play options are provided.
+
 ### Custom Plugins
 There is also a small plugin functionality as well, which can be seen on the example `frame.html` page which hosts a miniature app.
 To implement a custom plugin, integrators should create an instance of `springroll.ApplicationPlugin` and then implement a `setup` method:
