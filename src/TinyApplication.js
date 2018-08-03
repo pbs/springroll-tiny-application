@@ -70,12 +70,15 @@
       }
     }
 
-    this.container.fetch("playOptions", function(e) {
-      if (options.hooks.playOptions) {
-        this.playOptions = e.data;
-        options.hooks.playOptions(e);
-      }
-    }.bind(this));
+    this.container.fetch(
+      "playOptions",
+      function(e) {
+        if (options.hooks.playOptions) {
+          this.playOptions = e.data;
+          options.hooks.playOptions(e);
+        }
+      }.bind(this)
+    );
 
     // setup all plugins
     TinyApplication.plugins.sort(function(a, b) {
