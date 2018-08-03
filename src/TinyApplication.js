@@ -55,7 +55,7 @@
     this.container.send("keepFocus", false);
 
     // pull play options
-    this.playOptions = {};
+    this.playOptions = null;
 
     // attempt to load play options from the query string
     var match = /playOptions=[^&$]*/.exec(window.location.search);
@@ -72,9 +72,10 @@
 
     this.container.fetch("playOptions", function(e) {
       if (options.hooks.playOptions) {
+        this.playOptions = e.data;
         options.hooks.playOptions(e);
       }
-    });
+    }.bind(this));
 
     // setup all plugins
     TinyApplication.plugins.sort(function(a, b) {
