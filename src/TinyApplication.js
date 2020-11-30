@@ -44,7 +44,7 @@
     var missingWantedHooks = ["playOptions"].filter(isMissing);
     if (missingWantedHooks.length > 0) {
       console.warn(
-        "Maybe you should provide these hooks? : " + missingWanted.join(", ")
+        "Maybe you should provide these hooks? : " + missingWantedHooks.join(", ")
       );
     }
 
